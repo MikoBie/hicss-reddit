@@ -1,0 +1,8 @@
+name: hicss-reddit
+channels:
+  - defaults
+dependencies:
+  - python=3.12.4
+  - pip:
+    - pandas==2.2.2
+    - praw==7.7.1
