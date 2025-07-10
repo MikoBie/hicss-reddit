@@ -11,7 +11,7 @@ hv.extension("matplotlib", logo=False)
 ## Globals
 ROOT = Path(__file__).absolute().parent.parent
 PNG = ROOT / "png"
-COLORS = ["#E6B830", "#A5C9E6", "#73C0C1"]
+COLORS = ["#FFFFFF","#E6B830",  "#73C0C1","#A5C9E6", ]
 
 # %%
 ## Data
@@ -24,13 +24,13 @@ df = pd.DataFrame(
         "Country": ["Poland", "Portugal", "United Kingdom"],
     }
 )
-df = pd.melt(df, id_vars=["Country"], var_name="COMb", value_name="prop").sort_values(
-    "prop"
+df = pd.melt(df, id_vars=["Country"], var_name="COM-B", value_name="prop").sort_values(
+    "prop", ascending=True
 )
 
 # %%
 ## Plot
-plt = hv.Bars(df, vdims=["prop"], kdims=["COMb", "Country"]).opts(
+plt = hv.Bars(df, vdims=["prop"], kdims=["Country", "COM-B"]).opts(
     multi_level=False,
     xlabel="",
     yformatter=mtick.PercentFormatter(),
@@ -41,18 +41,18 @@ plt = hv.Bars(df, vdims=["prop"], kdims=["COMb", "Country"]).opts(
 )
 
 labels = [
-    hv.Text(0.02, 0.05, "1%"),
-    hv.Text(0.28, 0.09, "5%"),
-    hv.Text(0.55, 0.26, "22%"),
-    hv.Text(1.02, 0.16, "12%"),
-    hv.Text(1.28, 0.21, "17%"),
-    hv.Text(1.55, 0.26, "22%"),
-    hv.Text(2.02, 0.23, "19%"),
-    hv.Text(2.28, 0.29, "25%"),
-    hv.Text(2.55, 0.37, "33%"),
-    hv.Text(3.02, 0.76, "72%"),
-    hv.Text(3.28, 0.64, "60%"),
-    hv.Text(3.55, 0.49, "45%"),
+    hv.Text(0, 0.74, "72%"),
+    hv.Text(1, 0.62, "60%"),
+    hv.Text(2, 0.47, "47%"),
+    hv.Text(0.225, 0.21, "19%"),
+    hv.Text(1.225, .27, "25%"),
+    hv.Text(2.225, .35, "33%"),
+    hv.Text(0.425, 0.14, "12%"),
+    hv.Text(1.425, .19, "17%"),
+    hv.Text(2.425, .24, "22%"),
+    hv.Text(0.62, 0.03, "1%"),
+    hv.Text(1.62, .07, "5%"),
+    hv.Text(2.62, .24, "22%"),
 ]
 fig = plt * hv.Overlay(labels)
 # %%
